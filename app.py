@@ -80,7 +80,12 @@ def convertFile(hash: str):
     
     voice: PiperVoice = PiperVoice.load("./voices/en_US-joe-medium.onnx")
 
+    # with wave.open(filename + ".wav", "wb") as wav_file:
+    #     voice.synthesize_wav(text, wav_file)
     with wave.open(filename + ".wav", "wb") as wav_file:
+        wav_file.setnchannels(1)        # mono
+        wav_file.setsampwidth(2)        # 16-bit = 2 bytes
+        wav_file.setframerate(22050)    # sample rate
         voice.synthesize_wav(text, wav_file)
 
     return redirect("/" + hash, 302)
