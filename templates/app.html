@@ -16,7 +16,11 @@
         Read My Homework
     </h1>
     <div class="m-3 alert alert-warning">
-        Warning text!
+        This site is provided for free. You are responsible for all of your own
+        actions. All data submitted is proccessed UNENCRYPTED. Files submitted
+        are not assumed persistant. You are responsible for keeping a copy of
+        your files. Submitted files are not private and anyone with site access
+        can view them.
     </div>
     <div class="m-4">
         <div class="mb-4">
@@ -25,30 +29,55 @@
             <label for="uploadFileInput">Current file: {% if hash %}{{ hash }}{% else %}none{% endif %}</label>
         </div>
         <div class="row align-items-center justify-content-center text-center">
-            <div class="col-3 p-3 rounded">
+            <div class="col p-3 rounded">
                 <div id="fileNameLabel">
                     PDF with OCR run
                 </div>
                 <a href="/pdf/{{ hash }}" class="btn btn-primary" {% if not hash %}hidden{% endif %}>Download PDF</a>
             </div>
             <div class="col">
-                <span class="form-check form-check-inline form-switch">
+                <!-- <span class="form-check form-check-inline form-switch">
                     <input type="checkbox" name="ocr-check" id="" class="form-check-input">
                     <label for="ocr-check" class="form-check-label">Run OCR?</label>
                 </span>
                 <span class="form-check form-check-inline form-switch">
                     <input type="checkbox" name="tts-check" id="" class="form-check-input" role="switch">
                     <label for="tts-check" class="form-check-label">Run TTS?</label>
-                </span>
+                </span> -->
                 <span>
-                    <button id="convertFileBtn" class="btn btn-primary">Convert</button>
+                    {% if hash %}
+                        <button id="convertFileBtn" class="btn btn-primary">Convert</button>
+                    {% else %}
+                        No file submitted!
+                    {% endif %}
                 </span>
             </div>
-            <div class="col-3 p-3 rounded">
+            <div class="col p-3 rounded">
                 <div id="convertedLabel">
                     WAV from PDF text
                 </div>
                 <a href="/wav/{{ hash }}" class="btn btn-primary" {% if not converted %}hidden{% endif %}>Download WAV</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="loadingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog alert alert-info">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Loading</h1>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    The content is currently loading, please wait. The page will
+                    automatically refresh when loading is done.
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+                </div>
             </div>
         </div>
     </div>

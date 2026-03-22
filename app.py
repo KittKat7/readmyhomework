@@ -25,8 +25,8 @@ def filePage(hash: str):
     
 # TODO
 @app.errorhandler(404)
-def page_not_found(error):
-    return render_template('page_not_found.html'), 404
+def page_not_found(error: str):
+    return render_template('404.html', error=error), 404
 
 @app.route("/upload", methods=["POST"]) #type: ignore
 def upload_file():
