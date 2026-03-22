@@ -1,0 +1,9 @@
+
+body>div>div.row>:nth-of-type(odd) {
+    background-color: lightgray;
+}
+
+#fileNameLabel,
+#convertedLabel {
+    overflow-wrap: anywhere;
+}

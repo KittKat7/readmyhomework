@@ -4,25 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <style>
-        body>div>div.row>:nth-of-type(odd) {
-            background-color: lightgray;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/app.css">
+    <script src="/static/app.js"></script>
 </head>
 <body>
+    <span id="hash" hidden>{{ hash }}</span>
     <h1 class="m-3 text-center alert alert-info">
         Read My Homework
     </h1>
+    <div class="m-3 alert alert-warning">
+        Warning text!
+    </div>
     <div class="m-4">
+        <div class="mb-4">
+            <button id="uploadFileBtn" class="btn btn-primary">Upload file</button>
+            <input type="file" name="uploadFileInput" id="uploadFileInput" accept="application/pdf" style="display:none;">
+            <label for="uploadFileInput">Current file: {% if hash %}{{ hash }}{% else %}none{% endif %}</label>
+        </div>
         <div class="row align-items-center justify-content-center text-center">
-            <div class="col-3">
-                <button class="btn btn-secondary">Upload file</button>
+            <div class="col-3 p-3 rounded">
+                <div id="fileNameLabel">
+                    PDF with OCR run
+                </div>
+                <a href="/pdf/{{ hash }}" class="btn btn-primary" {% if not hash %}hidden{% endif %}>Download PDF</a>
             </div>
-            <div class="col">a</div>
-            <div class="col-3">
-                <button class="btn btn-secondary">Dowload file</button>
+            <div class="col">
+                <span class="form-check form-check-inline form-switch">
+                    <input type="checkbox" name="ocr-check" id="" class="form-check-input">
+                    <label for="ocr-check" class="form-check-label">Run OCR?</label>
+                </span>
+                <span class="form-check form-check-inline form-switch">
+                    <input type="checkbox" name="tts-check" id="" class="form-check-input" role="switch">
+                    <label for="tts-check" class="form-check-label">Run TTS?</label>
+                </span>
+                <span>
+                    <button id="convertFileBtn" class="btn btn-primary">Convert</button>
+                </span>
+            </div>
+            <div class="col-3 p-3 rounded">
+                <div id="convertedLabel">
+                    WAV from PDF text
+                </div>
+                <a href="/wav/{{ hash }}" class="btn btn-primary" {% if not converted %}hidden{% endif %}>Download WAV</a>
             </div>
         </div>
     </div>
