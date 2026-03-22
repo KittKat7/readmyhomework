@@ -9,6 +9,8 @@ from flask import Flask, render_template, request, jsonify, redirect, send_file
 app: Flask = Flask(__name__)
 
 FILECACHE = "./filecache/"
+if not os.path.exists(FILECACHE):
+    os.makedirs(FILECACHE)
 
 @app.route("/")
 def homePage():
