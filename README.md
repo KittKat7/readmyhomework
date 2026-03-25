@@ -8,6 +8,9 @@ version of code from the event. The documentation in that branch may be updated,
 but the code will not, its purpose is to document the state of the project from
 the event.
 
+To see my other Appal Hack projects, check out my website:
+[kittkat.xyz](https://kittkat.xyz)
+
 ## Background
 
 I learn better from listening than reading. Over my years in college, I've found
@@ -34,6 +37,7 @@ embeded images.
 - Add option to download extracted text directly
 - Keep uploaded filename for generated files
 - Add dark mode
+- Add more TTS voice options
 
 ## Development / Self Hosting
 
